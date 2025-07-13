@@ -8,6 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 // import { FooterComponent } from '../footer/footer.component';
 // import { LucideAngularModule, CodeXml, Server, Database, PanelsTopLeft, FileBadge, Mail, Linkedin, Twitter, Download, Sun, Moon, Wrench, ArrowUp           } from 'lucide-angular';
 import { NgOptimizedImage } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { NgOptimizedImage } from '@angular/common';
     CommonModule,
     HomeRoutingModule,
     SharedModule,
-        NgOptimizedImage,
+    NgOptimizedImage,
+    FormsModule,
+    ReactiveFormsModule
     // LucideAngularModule.pick({ CodeXml, Server, Database, PanelsTopLeft, FileBadge, Mail,Linkedin, Twitter, Download, Sun, Moon, Wrench, ArrowUp           },)
   ]
 })

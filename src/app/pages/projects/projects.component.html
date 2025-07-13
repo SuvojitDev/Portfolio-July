@@ -1,65 +1,66 @@
 <app-navbar></app-navbar>
 
-<div class="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+<div
+    class="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
     <main class="container mx-auto px-4 pt-24 pb-12">
-        <div class="max-w-8xl mx-auto space-y-16">
-            <section class="container mx-auto my-20 p-6 animate-fade-in">
-                <button
-                    class="flex items-center px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded transition mb-4"
-                    (click)="goBack()">
-                    ← Back
+        <div class="max-w-7xl mx-auto space-y-16">
+            <section class="animate-fade-in">
+
+                <button (click)="goBack()" [ngClass]="{'bg-gray-800 text-white hover:bg-gray-900 border border-gray-700': !isDark, 'bg-white text-black hover:bg-gray-100 border border-gray-300': isDark}" class="group flex items-center gap-2 px-5 py-2 rounded-full transition-all duration-300 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 mb-6">
+                    <span class="transition-transform duration-300 group-hover:-translate-x-1">←</span>
+                    <span class="font-medium">Back</span>
                 </button>
-                <h2 class="text-3xl font-bold text-gray-800 dark:text-white">My Projects</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <picture>
-                            <source srcset="https://ik.imagekit.io/SuvojitDev/Images/audioToTxt-project.png?updatedAt=1750503084872" type="image/webp">
-                            <img src="https://ik.imagekit.io/SuvojitDev/Images/audioToTxt-project.png?updatedAt=1750503084872" alt="Audio to Text Application" class="w-full h-48 object-cover rounded-lg mx-auto">
-                        </picture>
-                        <h3 class="text-xl font-bold mt-4">Audio to Text Application</h3>
-                        <p class="text-gray-600">An application that converts audio files to text using AssemblyAI's transcription API.</p>
-                        <div class="mt-4 flex justify-between items-center">
-                            <span></span>
-                            <a href="https://text-to-audio-assemblyai-challenge.vercel.app/" target="_blank"
-                                class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Live</a>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <img src="https://imageplaceholder.net/600x400" alt="Parking Management System"
-                            class="w-full h-48 object-cover rounded-lg">
-                        <h3 class="text-xl font-bold mt-4">Parking Management System</h3>
-                        <p class="text-gray-600">A web-based parking management system built with the MEAN stack.</p>
-                        <div class="mt-4 flex justify-between items-center">
-                            <span class="text-gray-700 font-semibold">Under Development</span>
-                            <a href="#" target="_blank"
-                                class="px-4 py-2 bg-gray-400 text-white rounded-lg cursor-not-allowed">Live</a>
-                        </div>
-                    </div>
 
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <img src="https://imageplaceholder.net/600x400" alt="Job Portal"
-                            class="w-full h-48 object-cover rounded-lg mx-auto">
-                        <h3 class="text-xl font-bold mt-4">Job Portal</h3>
-                        <p class="text-gray-600">A MEAN stack-based job portal allowing employers to post jobs and candidates to apply.</p>
-                        <div class="mt-4 flex justify-between items-center">
-                            <span class="text-gray-700 font-semibold">Under Development</span>
-                            <a href="https://your-job-portal-link.com" target="_blank"
-                                class="px-4 py-2 bg-gray-400 text-white rounded-lg cursor-not-allowed">Live</a>
+                <h2 class="text-4xl font-extrabold text-gray-800 dark:text-white mb-10 text-center tracking-tight">
+                    My Projects
+                </h2>
+
+                <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                    <div *ngFor="let project of projects; trackBy: trackByTitle"
+                        class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.01] transition-all duration-300 overflow-hidden flex flex-col group">
+
+                        <img [ngSrc]="project.image" [alt]="project.title"
+                            class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                            width="600" height="400" decoding="async" priority />
+
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white tracking-tight mb-2">
+                                    {{ project.title }}
+                                </h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    {{ project.description }}
+                                </p>
+
+                                <div class="flex flex-wrap gap-2 mt-4">
+                                    <span *ngFor="let tag of project.tags"
+                                        class="bg-gray-100 dark:bg-gray-700 text-xs text-gray-800 dark:text-gray-100 px-2 py-1 rounded-full font-medium">
+                                        {{ tag }}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 flex justify-between items-center">
+                                <span *ngIf="!project.isLive"
+                                    class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded-full">
+                                    Under Development
+                                </span>
+
+                                <a *ngIf="project.isLive; else notLive" [href]="project.liveUrl" target="_blank"
+                                    rel="noopener noreferrer" [attr.aria-label]="'View live demo of ' + project.title"
+                                    class="px-4 py-2 bg-green-600 hover:bg-green-700 hover:shadow-lg hover:shadow-green-300 text-white text-sm font-medium rounded-lg transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                                    Live
+                                </a>
+
+                                <ng-template #notLive>
+                                    <span
+                                        class="px-4 py-2 bg-gray-400 text-white text-sm font-medium rounded-lg cursor-not-allowed select-none">
+                                        Live
+                                    </span>
+                                </ng-template>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <img src="https://imageplaceholder.net/600x400" alt="Box Rent Application"
-                            class="w-full h-48 object-cover rounded-lg mx-auto">
-                        <h3 class="text-xl font-bold mt-4">Box Rent Application</h3>
-                        <p class="text-gray-600">An online platform for renting and managing storage boxes with secure access.</p>
-                        <div class="mt-4 flex justify-between items-center">
-                            <span class="text-gray-700 font-semibold">Under Development</span>
-                            <a href="#" target="_blank"
-                                class="px-4 py-2 bg-gray-400 text-white rounded-lg cursor-not-allowed">Live</a>
-                        </div>
-                    </div>
-
                 </div>
             </section>
         </div>

@@ -8,8 +8,14 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   isDark: boolean = true;
+  moonIconUrl: string = '';
+  sunIconUrl: string = '';
+
+  private imageKitBase = 'https://ik.imagekit.io/SuvojitDev';
 
   ngOnInit(): void {
+    this.moonIconUrl = `${this.imageKitBase}/Images/moon-dark.svg?updatedAt=1750510171511`;
+    this.sunIconUrl = `${this.imageKitBase}/Images/sun-light.svg?updatedAt=1750510171422`;
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
       this.isDark = false;

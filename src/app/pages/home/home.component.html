@@ -6,8 +6,8 @@
             <section class="text-center space-y-6 animate-fade-in">
                 <div
                     class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg">
-                    <!-- <img [ngSrc]="myProfileImage" alt="Profile Image" width="300" height="300" class="w-full h-full object-cover" fetchpriority="high" decoding="async" priority/> -->
-                    <img [ngSrc]="myProfileImage" alt="Profile Image" width="300" height="300" class="w-full h-full object-cover" fetchpriority="high" decoding="async" priority/>
+                    <img [ngSrc]="myProfileImage" alt="Profile Image" width="300" height="300"
+                        class="w-full h-full object-cover" fetchpriority="high" decoding="async" priority />
                 </div>
                 <div class="space-y-4">
                     <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white">
@@ -24,7 +24,8 @@
                     About Me
                 </h2>
                 <p class="text-gray-700 dark:text-gray-300 text-justify max-w-2xl mx-auto leading-relaxed">
-                    Hi, I'm <strong>Suvojit Modak</strong>, a passionate Full Stack Developer creating beautiful and
+                    Greetings! I'm <strong>Suvojit Modak</strong>, a passionate Full Stack Developer creating beautiful
+                    and
                     functional web experiences.
                     I specialize in transforming complex problems into intuitive, visually appealing solutions.
                     With expertise in modern web technologies, I build high-quality, responsive, and user-friendly
@@ -46,7 +47,9 @@
                             <div *ngFor="let skill of stack.skills; trackBy: trackBySkillName"
                                 class="flex flex-col items-center space-y-2">
                                 <div class="p-4 rounded-lg bg-gray-100 dark:bg-gray-700">
-                                    <img [ngSrc]="skill.imgUrl" [alt]="skill.name + ' Logo'" width="48" height="48" class="w-12 h-12 object-contain" fetchpriority="low" decoding="async" loading="lazy"/>
+                                    <img [ngSrc]="skill.imgUrl" [alt]="skill.name + ' Logo'" width="48" height="48"
+                                        class="w-12 h-12 object-contain" fetchpriority="low" decoding="async"
+                                        loading="lazy" />
                                 </div>
                                 <span class="text-sm text-gray-600 dark:text-gray-400">{{ skill.name }}</span>
                             </div>
@@ -61,7 +64,8 @@
                 </h2>
 
                 <div class="grid gap-6">
-                    <div class="p-6 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out transform hover:shadow-2xl hover:scale-[1.02] hover:bg-white/70 dark:hover:bg-gray-700/70">
+                    <div
+                        class="p-6 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out transform hover:shadow-2xl hover:scale-[1.02] hover:bg-white/70 dark:hover:bg-gray-700/70">
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                             Junior Frontend Developer
                         </h3>
@@ -86,10 +90,114 @@
                         <a *ngFor="let contact of contactGroup.links; trackBy: trackBySkillName" [href]="contact.href"
                             target="_blank" rel="noopener noreferrer" [attr.aria-label]="contact.name"
                             class="inline-flex items-center px-6 py-3 rounded-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-lg border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white shadow-md hover:shadow-2xl hover:scale-105 hover:bg-white/70 dark:hover:bg-gray-700/70  transition-all duration-300 ease-in-out transform">
-                            <img [ngSrc]="contact.iconUrl" [alt]="contact.alt" width="24" height="24" class="w-6 h-6 mr-2 object-contain" fetchpriority="low" decoding="async" loading="lazy"/> {{ contact.name }}
+                            <img [ngSrc]="contact.iconUrl" [alt]="contact.alt" width="24" height="24"
+                                class="w-6 h-6 mr-2 object-contain" fetchpriority="low" decoding="async"
+                                loading="lazy" /> {{ contact.name }}
                         </a>
                     </div>
                 </ng-container>
+            </section>
+
+            <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-4">Let's Work Together</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300">
+                        Feel free to reach out for collaborations or just a friendly hello 👋
+                    </p>
+                </div>
+
+                <form [formGroup]="contactForm" autocomplete="off"
+                    class="mt-12 max-w-2xl mx-auto bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-6">Contact Form</h3>
+
+                    <div class="mb-6">
+                        <label for="name"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 required-field"
+                            title="This field is required">Name</label>
+                        <input id="name" formControlName="name" type="text" required autocomplete="name"
+                            (keypress)="allowOnlyLetters($event)" minlength="2" maxlength="50" pattern="[a-zA-Z\s]*"
+                            [ngClass]="{'border-red-500 focus:ring-red-500': contactForm.get('name')?.invalid && (contactForm.get('name')?.touched || submitted), 'border-gray-300 dark:border-gray-600': !(contactForm.get('name')?.invalid && (contactForm.get('name')?.touched || submitted))}"
+                            class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <div class="ErrorMessageSection" aria-live="polite">
+                            <p
+                                *ngIf="(contactForm.get('name')?.touched || submitted) && contactForm.get('name')?.hasError('required')">
+                                Please enter your name
+                            </p>
+                            <p
+                                *ngIf="(contactForm.get('name')?.touched || submitted) && contactForm.get('name')?.hasError('minlength')">
+                                Name must be at least 2 characters long.
+                            </p>
+                            <p
+                                *ngIf="(contactForm.get('name')?.touched || submitted) && contactForm.get('name')?.hasError('pattern')">
+                                Name can only contain letters and spaces.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="email"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 required-field"
+                            title="This field is required">Email</label>
+                        <input id="email" formControlName="email" type="email" required autocomplete="email"
+                            [ngClass]="{'border-red-500 focus:ring-red-500': contactForm.get('email')?.invalid && (contactForm.get('email')?.touched || submitted), 'border-gray-300 dark:border-gray-600': !(contactForm.get('email')?.invalid && (contactForm.get('email')?.touched || submitted))}"
+                            class="w-full p-3 rounded-lg border bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2" />
+                        <div class="ErrorMessageSection" aria-live="polite">
+                            <p
+                                *ngIf="(contactForm.get('email')?.touched || submitted) && contactForm.get('email')?.hasError('required')">
+                                Please enter your email
+                            </p>
+                            <p
+                                *ngIf="(contactForm.get('email')?.touched || submitted) && contactForm.get('email')?.hasError('missingAtSymbol')">
+                                Must contain at least the "&#64;" character
+                            </p>
+                            <p
+                                *ngIf="(contactForm.get('email')?.touched || submitted) && contactForm.get('email')?.hasError('invalidEmail')">
+                                Please enter a valid email address
+                            </p>
+                            <p
+                                *ngIf="(contactForm.get('email')?.touched || submitted) && contactForm.get('email')?.hasError('maxlength')">
+                                Email must be at most 40 characters long.
+                            </p>
+                            <p
+                                *ngIf="(contactForm.get('email')?.touched || submitted) && contactForm.get('email')?.hasError('invalidDomain')">
+                                Only Gmail, Outlook, Yahoo, Zoho, iCloud, and AOL addresses are allowed.
+                            </p>
+                            <p
+                                *ngIf="(contactForm.get('email')?.touched || submitted) && contactForm.get('email')?.hasError('suspiciousEmail')">
+                                Suspicious characters like "+" or multiple dots are not allowed.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="message"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 required-field"
+                            title="This field is required">Message</label>
+                        <textarea id="message" formControlName="message" rows="5" required autocomplete="message"
+                            minlength="10"
+                            [ngClass]="{'border-red-500 focus:ring-red-500': contactForm.get('message')?.invalid && (contactForm.get('message')?.touched || submitted), 'border-gray-300 dark:border-gray-600': !(contactForm.get('message')?.invalid && (contactForm.get('message')?.touched || submitted))}"
+                            class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        <div class="ErrorMessageSection" aria-live="polite">
+                            <p
+                                *ngIf="(contactForm.get('message')?.touched || submitted) && contactForm.get('message')?.hasError('required')">
+                                Please enter your message
+                            </p>
+                            <p
+                                *ngIf="(contactForm.get('message')?.touched || submitted) && contactForm.get('message')?.hasError('minlength')">
+                                Message must be at least 10 characters long.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-6">
+                        <button type="submit" title="Send Message" (click)="submitForm()" [ngClass]="{'bg-white text-black hover:bg-gray-100 border border-gray-300': isDark, 'bg-gray-900 text-white hover:bg-gray-800 border border-gray-700': !isDark}" class="group flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 disabled:opacity-50 disabled:cursor-not-allowed"
+                            [disabled]="contactForm.invalid">
+                            <span class="transition-transform duration-300 ease-in-out group-hover:-translate-y-0.5">
+                                Send Message
+                            </span>
+                        </button>
+                    </div>
+                </form>
             </section>
         </div>
     </main>

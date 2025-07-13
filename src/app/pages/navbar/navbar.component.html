@@ -14,17 +14,12 @@
           [routerLinkActiveOptions]="{ exact: true }">
           Projects
         </a>
-
-        <button (click)="toggleTheme()" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-          aria-label="Toggle theme">  
-          <picture [hidden]="isDark">
-            <source srcset="https://ik.imagekit.io/SuvojitDev/Images/moon-dark.svg?updatedAt=1750510171511" type="image/svg+xml">
-            <img fetchpriority="high" src="https://ik.imagekit.io/SuvojitDev/Images/moon-dark.svg?updatedAt=1750510171511" alt="Moon" class="w-8 h-8" decoding="async" title="Switch to Dark Mode">
-          </picture>
-          <picture [hidden]="!isDark">
-            <source srcset="https://ik.imagekit.io/SuvojitDev/Images/sun-light.svg?updatedAt=1750510171422" type="image/svg+xml">
-            <img fetchpriority="high" src="https://ik.imagekit.io/SuvojitDev/Images/sun-light.svg?updatedAt=1750510171422" alt="Sun" class="w-8 h-8" decoding="async" title="Switch to Light Mode">
-          </picture>
+        <button (click)="toggleTheme()"
+          class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle theme">
+          <img [ngSrc]="moonIconUrl" alt="Moon" class="w-8 h-8" decoding="async" title="Switch to Dark Mode" height="32" width="32"
+            fetchpriority="high" priority [hidden]="isDark">
+          <img [ngSrc]="sunIconUrl" alt="Sun" class="w-8 h-8" decoding="async" title="Switch to Light Mode" height="32" width="32"
+            fetchpriority="high" priority [hidden]="!isDark">
         </button>
       </div>
     </div>

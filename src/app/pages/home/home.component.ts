@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { allowedEmailValidator } from '../../shared/helpers/temp-email.validator';
+import { GoogleFormService } from 'src/app/shared/services/google-form.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +12,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 })
 export class HomeComponent implements OnInit, OnDestroy {
   myProfileImage: string = '';
+  isDark: boolean = false;
 
   techStacks: {
     category: string;
@@ -24,14 +29,21 @@ export class HomeComponent implements OnInit, OnDestroy {
   // https://ik.imagekit.io/SuvojitDev/Images/mylogowebp.webp?updatedAt=1752349838072
   // https://ik.imagekit.io/SuvojitDev/Images/mylogoavif.avif?updatedAt=1752349838584
 
-  constructor() {}
+  contactForm!: FormGroup;
+  submitted: boolean = false;
+
+  constructor(
+    private fb: FormBuilder,
+    private googleForm: GoogleFormService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
+    this.createContactForm();
     // Profile Image
     // this.myProfileImage = `${this.imageKitBase}/Images/mylogoavif.avif?updatedAt=1752349838584`;
     this.myProfileImage = `${this.imageKitBase}/Images/mylogowebp.webp?updatedAt=1752349838072`;
-    // console.log('this.myProfileImage:', this.myProfileImage);
-    // Tech Stacks
+   
     const skillData = [
       {
         category: 'Frontend',
@@ -128,6 +140,39 @@ export class HomeComponent implements OnInit, OnDestroy {
     }));
   }
 
+  createContactForm() {
+    this.contactForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(2), Validators.pattern(/^[A-Za-z\s]+$/)]],
+      email: ['', [Validators.required, Validators.email, allowedEmailValidator, this.emailValidator, Validators.maxLength(40),]],
+      message: ['', [Validators.required, Validators.minLength(10)]],
+    });
+  }
+
+  submitForm() {
+    this.submitted = true;
+    this.contactForm.get('email')?.updateValueAndValidity();
+    console.log('Form submitted', this.contactForm.value);
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched();
+      return;
+    }
+
+    const formData = this.contactForm.value;
+    // // console.log('Form submitted:', formData);
+    // this.googleForm.submit(formData.name, formData.email, formData.message);
+    // this.contactForm.reset();
+    // this.submitted = false;
+    this.googleForm.submit(formData.name, formData.email, formData.message)
+      .then(() => {
+        this.toastr.success('Your message has been sent!', 'Success');
+        this.contactForm.reset();
+        this.submitted = false;
+      })
+      .catch(() => {
+        this.toastr.error('Something went wrong. Please try again.', 'Error');
+      });
+  }
+
   trackByCategory(index: number, item: any) {
     return item.category;
   }
@@ -135,6 +180,56 @@ export class HomeComponent implements OnInit, OnDestroy {
   trackBySkillName(index: number, item: any) {
     return item.name;
   }
+
+  emailValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    if (!value) {
+      return null;
+    }
+    if (!value.includes('@')) {
+      return { missingAtSymbol: true };
+    }
+    if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+$/.test(value)) {
+      return { invalidEmail: true };
+    }
+    return null;
+  }
+
+  allowOnlyLetters(event: KeyboardEvent) {
+    const regex = /^[a-zA-Z\s]*$/;
+    if (!regex.test(event.key)) {
+      event.preventDefault();
+    }
+  }
+
+  blockEvent(event: ClipboardEvent | DragEvent) {
+    event.preventDefault();
+  }
+
+  // This block the browser shortcuts like F12, Ctrl+Shift+I/J/C/U, and view source
+  // @HostListener('document:contextmenu', ['$event'])
+  // @HostListener('document:keydown', ['$event'])
+  // handleBrowserShortcuts(event: MouseEvent | KeyboardEvent): boolean {
+  //   if (
+  //     event instanceof KeyboardEvent &&
+  //     (
+  //       event.key === 'F12' ||
+  //       (event.ctrlKey && event.shiftKey && ['i', 'j', 'c', 'u'].includes(event.key.toLowerCase())) || // covers Ctrl+Shift+I/J/C/U
+  //       (event.ctrlKey && event.key.toLowerCase() === 'u') // view source
+  //     )
+  //   ) {
+  //     event.preventDefault();
+  //     event.stopPropagation();
+  //     return false;
+  //   }
+
+  //   if (event instanceof MouseEvent) {
+  //     event.preventDefault();
+  //     return false;
+  //   }
+
+  //   return true;
+  // }
 
   ngOnDestroy() {
     console.log('HomeComponent destroyed');

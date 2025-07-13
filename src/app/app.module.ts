@@ -9,6 +9,7 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { SharedModule } from './shared/shared.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NgOptimizedImage } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,12 @@ import { NgOptimizedImage } from '@angular/common';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
