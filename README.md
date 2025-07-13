@@ -1,29 +1,38 @@
-# AngularPortfolio
+# 🧩 Angular Portfolio
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+A personal portfolio web application built with **Angular 16**. It showcases projects, skills, contact information, and a clean, responsive design — optimized for performance and accessibility.
 
-## Development server
+> ✨ Built and maintained by [Suvojit Modak](https://github.com/SuvojitDev)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## 🚀 Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- ✅ Fully responsive UI with modern design
+- 🌙 Light/Dark theme support
+- 💡 Lazy loading for optimized performance
+- 🔒 Accessible & secure form handling
+- 📈 Optimized for Core Web Vitals (LCP, CLS, FCP, Speed Index)
+- 🛠️ Built with Angular CLI v16.2.16
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 📦 Technologies Used
 
-## Running unit tests
+- **Angular 16**
+- **TypeScript**
+- **Tailwind CSS**
+- **RxJS**
+- **Angular Animations**
+- **Forms & Reactive Validation**
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+---
 
-## Running end-to-end tests
+## 🧪 Getting Started
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Prerequisites
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-By SM
+- Node.js (v16+ recommended)
+- Angular CLI:  
+  ```bash
+  npm install -g @angular/cli

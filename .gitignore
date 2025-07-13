@@ -1,0 +1,25 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+out/
+build/
+
+# Angular cache
+.angular/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# OS junk files
+.DS_Store
+Thumbs.db
