@@ -8,6 +8,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, On
 })
 export class FooterComponent implements OnInit {
   currentYear: number;
+  lastUpdated: string;
   isScrolled: boolean = false;
   arrowUp: string = '';
   private imageKitBase = 'https://ik.imagekit.io/SuvojitDev';
@@ -16,6 +17,7 @@ export class FooterComponent implements OnInit {
     private cdr: ChangeDetectorRef
   ) {
     this.currentYear = new Date().getFullYear();
+    this.lastUpdated = '25 August 2025 at 03:30 am IST'
   }
 
   ngOnInit() {

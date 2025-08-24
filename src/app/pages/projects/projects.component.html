@@ -6,7 +6,9 @@
         <div class="max-w-7xl mx-auto space-y-16">
             <section class="animate-fade-in">
 
-                <button (click)="goBack()" [ngClass]="{'bg-gray-800 text-white hover:bg-gray-900 border border-gray-700': !isDark, 'bg-white text-black hover:bg-gray-100 border border-gray-300': isDark}" class="group flex items-center gap-2 px-5 py-2 rounded-full transition-all duration-300 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 mb-6">
+                <button (click)="goBack()"
+                    [ngClass]="{'bg-gray-800 text-white hover:bg-gray-900 border border-gray-700': !isDark, 'bg-white text-black hover:bg-gray-100 border border-gray-300': isDark}"
+                    class="group flex items-center gap-2 px-5 py-2 rounded-full transition-all duration-300 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 mb-6">
                     <span class="transition-transform duration-300 group-hover:-translate-x-1">←</span>
                     <span class="font-medium">Back</span>
                 </button>
@@ -39,22 +41,20 @@
                                     </span>
                                 </div>
                             </div>
-
-                            <div class="mt-6 flex justify-between items-center">
+                            
+                            <div class="mt-6 flex items-center" [ngClass]="{'justify-center': project.isLive, 'justify-between': !project.isLive}">
                                 <span *ngIf="!project.isLive"
                                     class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded-full">
                                     Under Development
                                 </span>
-
-                                <a *ngIf="project.isLive; else notLive" [href]="project.liveUrl" target="_blank"
+                                <a *ngIf="project.isLive; else notLive" [href]="project.liveUrl" target="_blank" title="Live Demo"
                                     rel="noopener noreferrer" [attr.aria-label]="'View live demo of ' + project.title"
-                                    class="px-4 py-2 bg-green-600 hover:bg-green-700 hover:shadow-lg hover:shadow-green-300 text-white text-sm font-medium rounded-lg transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                                    class="px-4 py-2 bg-green-700 hover:bg-green-800 hover:shadow-lg hover:shadow-green-300 text-white text-sm font-medium rounded-lg transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 w-32 text-center">
                                     Live
                                 </a>
-
                                 <ng-template #notLive>
                                     <span
-                                        class="px-4 py-2 bg-gray-400 text-white text-sm font-medium rounded-lg cursor-not-allowed select-none">
+                                        class="px-4 py-2 bg-gray-600 text-white text-sm font-medium rounded-lg cursor-not-allowed select-none">
                                         Live
                                     </span>
                                 </ng-template>

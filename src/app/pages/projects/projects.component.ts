@@ -20,7 +20,8 @@ export class ProjectsComponent implements OnInit {
   isDark: boolean = true;
 
   private imageKitBase = 'https://ik.imagekit.io/SuvojitDev';
-  private staticBase = 'https://imageplaceholder.net';
+  // private staticBase = 'https://imageplaceholder.net';
+  private staticBase = 'https://ik.imagekit.io/SuvojitDev';
 
   constructor(
     private location: Location
@@ -39,7 +40,7 @@ export class ProjectsComponent implements OnInit {
       {
         title: 'Parking Management System',
         description: 'A web-based parking management system built with the MEAN stack.',
-        image: `${this.staticBase}/600x400`,
+        image: `${this.staticBase}/Images/dummyimg.svg`,
         liveUrl: '',
         isLive: false,
         tags: ['MongoDB', 'Express', 'Angular', 'Node.js']
@@ -47,7 +48,7 @@ export class ProjectsComponent implements OnInit {
       {
         title: 'Job Portal',
         description: 'A MEAN stack-based job portal allowing employers to post jobs and candidates to apply.',
-        image: `${this.staticBase}/600x400`,
+        image: `${this.staticBase}/Images/dummyimg.svg`,
         liveUrl: '',
         isLive: false,
         tags: ['Angular', 'Node.js', 'JWT', 'REST API']
@@ -55,7 +56,7 @@ export class ProjectsComponent implements OnInit {
       {
         title: 'Box Rent Application',
         description: 'An online platform for renting and managing storage boxes with secure access.',
-        image: `${this.staticBase}/600x400`,
+        image: `${this.staticBase}/Images/dummyimg.svg`,
         liveUrl: '',
         isLive: false,
         tags: ['Angular', 'Firebase', 'Stripe', 'Tailwind']

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { allowedEmailValidator } from '../../shared/helpers/temp-email.validator';
 import { GoogleFormService } from 'src/app/shared/services/google-form.service';
@@ -31,19 +31,29 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   contactForm!: FormGroup;
   submitted: boolean = false;
+  isLoading: boolean = true;
 
   constructor(
     private fb: FormBuilder,
     private googleForm: GoogleFormService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.loadPageData();
+      this.isLoading = false;
+      this.cdr.markForCheck();
+    }, 800);
+  }
+
+  loadPageData() {
     this.createContactForm();
     // Profile Image
     // this.myProfileImage = `${this.imageKitBase}/Images/mylogoavif.avif?updatedAt=1752349838584`;
     this.myProfileImage = `${this.imageKitBase}/Images/mylogowebp.webp?updatedAt=1752349838072`;
-   
+
     const skillData = [
       {
         category: 'Frontend',
@@ -54,10 +64,11 @@ export class HomeComponent implements OnInit, OnDestroy {
           { name: 'Angular', file: 'angular' },
           { name: 'TypeScript', file: 'typescript' },
           { name: 'Bootstrap', file: 'bootstrap' },
-          { name: 'Tailwind CSS', file: 'tailwindcss' },
+          { name: 'Tailwind\nCSS', file: 'tailwindcssNew' },
           { name: 'SCSS', file: 'sass' },
-          { name: 'RxJS', file: 'rxjs' }
-        ]
+          { name: 'RxJS', file: 'rxjs' },
+          { name: 'Bulma', file: 'bulma' },
+          { name: 'PrimeNG', file: 'primeng' },]
       },
       {
         category: 'Backend',
@@ -77,14 +88,14 @@ export class HomeComponent implements OnInit, OnDestroy {
       {
         category: 'Tools & Platforms',
         skills: [
-          { name: 'vscode', file: 'vscode' },
+          { name: 'VS Code', file: 'vscode' },
           { name: 'Git', file: 'git' },
           { name: 'Github', file: 'github' },
-          { name: 'Github Action', file: 'github-actions' },
+          { name: 'Github\nAction', file: 'githubactionsnew' },
           { name: 'GitLab', file: 'gitlab' },
           { name: 'Postman', file: 'postman' },
           { name: 'Vercel', file: 'vercel' },
-          { name: 'Netlify', file: 'netlify-light' }
+          { name: 'Netlify', file: 'netlify-light' },
         ]
       }
     ];
