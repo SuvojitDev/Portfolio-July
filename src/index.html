@@ -22,14 +22,24 @@
     href="https://ik.imagekit.io/SuvojitDev/Images/profile-logo.ico?updatedAt=1750501704293">
 
   <!-- Preload critical LCP images -->
-  <link rel="preload" as="image" href="https://ik.imagekit.io/SuvojitDev/Images/moon-dark.svg?updatedAt=1750510171511" fetchpriority="high" />
-  <link rel="preload" as="image" href="https://ik.imagekit.io/SuvojitDev/Images/sun-light.svg?updatedAt=1750510171422" fetchpriority="high" />
+  <link rel="preload" as="image" href="https://ik.imagekit.io/SuvojitDev/Images/moon-dark.svg?updatedAt=1750510171511"
+    fetchpriority="high" />
+  <link rel="preload" as="image" href="https://ik.imagekit.io/SuvojitDev/Images/sun-light.svg?updatedAt=1750510171422"
+    fetchpriority="high" />
   <!-- <link rel="preload" as="image" href="https://ik.imagekit.io/SuvojitDev/Images/mainProfileIMG.svg?updatedAt=1750503130507" fetchpriority="high" type="image/svg+xml"/> -->
-  <link rel="preload" as="image" href="https://ik.imagekit.io/SuvojitDev/Images/mylogowebp.webp?updatedAt=1752349838072" fetchpriority="high"  type="image/webp"/>
+  <link rel="preload" as="image" href="https://ik.imagekit.io/SuvojitDev/Images/mylogowebp.webp?updatedAt=1752349838072"
+    fetchpriority="high" type="image/webp" />
   <!-- <link rel="preload" as="image" href="https://ik.imagekit.io/SuvojitDev/Images/mylogoavif.avif?updatedAt=1752349838584" fetchpriority="high"  type="image/avif"/> -->
 
   <!-- Fonts -->
-  <link rel="preload" href="/assets/fonts/dyson-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="./assets/fonts/dyson-sans.woff2" type="font/woff2" crossorigin="anonymous" />
+  <style>
+    @font-face {
+      font-family: 'Dyson Sans';
+      src: url('/assets/fonts/dyson-sans.woff2') format('woff2');
+      font-display: swap;
+    }
+  </style>
 
   <!-- PWA Support -->
   <link rel="manifest" href="manifest.webmanifest">

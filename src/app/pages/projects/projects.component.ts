@@ -40,9 +40,9 @@ export class ProjectsComponent implements OnInit {
       {
         title: 'Parking Management System',
         description: 'A web-based parking management system built with the MEAN stack.',
-        image: `${this.staticBase}/Images/dummyimg.svg`,
-        liveUrl: '',
-        isLive: false,
+        image: `${this.imageKitBase}/Images/PMS.png?updatedAt=1757267920357`,
+        liveUrl: 'https://pmslive.netlify.app/',
+        isLive: true,
         tags: ['MongoDB', 'Express', 'Angular', 'Node.js']
       },
       {
