@@ -46,12 +46,20 @@ export class ProjectsComponent implements OnInit {
         tags: ['MongoDB', 'Express', 'Angular', 'Node.js']
       },
       {
-        title: 'Job Portal',
-        description: 'A MEAN stack-based job portal allowing employers to post jobs and candidates to apply.',
-        image: `${this.staticBase}/Images/dummyimg.svg`,
-        liveUrl: '',
-        isLive: false,
-        tags: ['Angular', 'Node.js', 'JWT', 'REST API']
+        title: 'Split Bill Application',
+        description: 'A mobile-friendly application to split bills among friends and track expenses.',
+        image: `${this.staticBase}/Images/splitBill.png?updatedAt=1757743585093`,
+        liveUrl: 'https://split-bill-op.netlify.app/',
+        isLive: true,
+        tags: ['Angular', 'TypeScript', 'Tailwind', 'Netlify']
+      },
+      {
+        title: 'HabitTracker Application',
+        description: 'A habit tracking application to help users build and maintain good habits.',
+        image: `${this.staticBase}/Images/habitTracker?updatedAt=1757794739162`,
+        liveUrl: 'https://gemify-habit-tracker.netlify.app/home',
+        isLive: true,
+        tags: ['MongoDB', 'Express', 'Angular', 'Node.js']
       },
       {
         title: 'Box Rent Application',
