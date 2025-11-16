@@ -17,7 +17,7 @@ export class FooterComponent implements OnInit {
     private cdr: ChangeDetectorRef
   ) {
     this.currentYear = new Date().getFullYear();
-    this.lastUpdated = '25 August 2025 at 03:30 am IST'
+    this.lastUpdated = '17 November 2025 at 01:33 am IST'
   }
 
   ngOnInit() {

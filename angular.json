@@ -60,7 +60,8 @@
               "namedChunks": false,
               "vendorChunk": false,
               "extractLicenses": true,
-              "sourceMap": false
+              "sourceMap": false,
+              "commonChunk": false
             },
             "development": {
               "buildOptimizer": true,

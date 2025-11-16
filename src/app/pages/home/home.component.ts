@@ -132,7 +132,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           },
           {
             name: 'Download Resume',
-            href: 'https://ik.imagekit.io/SuvojitDev/Resume/Suvojit_Modak_Frontend_Developer_Resume_1yr_Experience.pdf?updatedAt=1752344686829',
+            href: 'https://ik.imagekit.io/SuvojitDev/Resume/Suvojit_Modak_Frontend_Developer_2Y_Experience.pdf',
             iconFile: 'down-light',
             alt: 'Resume Icon'
           }
