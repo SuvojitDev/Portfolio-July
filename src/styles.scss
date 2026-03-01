@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url(./assets/style/__globalStyle.scss);
+
 @font-face {
   font-family: 'Dyson-Sans';
   src: url('./assets/fonts/dyson-sans.woff2') format('woff2');
@@ -32,6 +34,7 @@ html {
       opacity: 0;
       transform: translateY(10px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);

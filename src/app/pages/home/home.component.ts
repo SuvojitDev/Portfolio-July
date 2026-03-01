@@ -32,6 +32,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   contactForm!: FormGroup;
   submitted: boolean = false;
   isLoading: boolean = true;
+  // Variables to hold the dynamically typing text
+  text1: string = '';
+  text2: string = '';
+  text3: string = '';
+  showCursor: boolean = false;
+
+  // The final target text we want to display
+  private target1 = "Greetings! I'm ";
+  private target2 = "Suvojit Modak";
+  private target3 = ", a passionate Full Stack Developer creating beautiful and functional web experiences. I specialize in transforming complex problems into intuitive, visually appealing solutions. With expertise in modern web technologies, I build high-quality, responsive, and user-friendly applications. My goal is to continuously learn, grow, and contribute to innovative projects that make an impact.";
 
   constructor(
     private fb: FormBuilder,
@@ -41,6 +51,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    // setTimeout(() => {
+    //   this.loadPageData();
+    //   this.isLoading = false;
+    //   this.cdr.markForCheck();
+
+    //   // 🟢 Start the text generation effect 300ms after the page loads
+    //   setTimeout(() => {
+    //     this.startTextGenerateEffect();
+    //   }, 300);
+
+    // }, 800);
+
     setTimeout(() => {
       this.loadPageData();
       this.isLoading = false;
@@ -68,14 +90,19 @@ export class HomeComponent implements OnInit, OnDestroy {
           { name: 'SCSS', file: 'sass' },
           { name: 'RxJS', file: 'rxjs' },
           { name: 'Bulma', file: 'bulma' },
-          { name: 'PrimeNG', file: 'primeng' },]
+          { name: 'PrimeNG', file: 'primeng' },
+          { name: 'Angular Material', file: 'angularmaterial' },
+        ]
       },
       {
         category: 'Backend',
         skills: [
           { name: 'Node.js', file: 'nodeJS' },
           { name: 'Express.js', file: 'expressJS' },
-          { name: 'GraphQL', file: 'graphQL' }
+          { name: 'GraphQL', file: 'graphQL' },
+          { name: 'Bun', file: 'bun' },
+          { name: 'Firebase', file: 'firebase' },
+          { name: 'Deno', file: 'DenoJs' },
         ]
       },
       {
@@ -132,7 +159,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           },
           {
             name: 'Download Resume',
-            href: 'https://ik.imagekit.io/SuvojitDev/Resume/Suvojit_Modak_Frontend_Developer_2Y_Experience.pdf',
+            href: 'https://ik.imagekit.io/SuvojitDev/Resume/Suvojit_Modak_Frontend_Developer_2.3_Years.pdf',
             iconFile: 'down-light',
             alt: 'Resume Icon'
           }
@@ -240,6 +267,45 @@ export class HomeComponent implements OnInit, OnDestroy {
   //   }
 
   //   return true;
+  // }
+
+  // startTextGenerateEffect() {
+  //   this.showCursor = true;
+  //   let currentPart = 1;
+  //   let i = 0;
+
+  //   const typeWriter = () => {
+  //     let targetText = currentPart === 1 ? this.target1 : (currentPart === 2 ? this.target2 : this.target3);
+
+  //     if (i < targetText.length) {
+  //       // Append the next character to the correct section
+  //       if (currentPart === 1) this.text1 += targetText.charAt(i);
+  //       else if (currentPart === 2) this.text2 += targetText.charAt(i);
+  //       else this.text3 += targetText.charAt(i);
+
+  //       i++;
+  //       this.cdr.markForCheck(); // Trigger UI update
+
+  //       // Delay before typing the next character (15ms creates a fast AI-generation speed)
+  //       setTimeout(typeWriter, 15);
+  //     } else {
+  //       // Current part finished, move to the next part
+  //       if (currentPart < 3) {
+  //         currentPart++;
+  //         i = 0;
+  //         setTimeout(typeWriter, 15);
+  //       } else {
+  //         // All text generated! Hide the cursor after a few seconds
+  //         setTimeout(() => {
+  //           this.showCursor = false;
+  //           this.cdr.markForCheck();
+  //         }, 4000);
+  //       }
+  //     }
+  //   };
+
+  //   // Start the recursive typing loop
+  //   typeWriter();
   // }
 
   ngOnDestroy() {

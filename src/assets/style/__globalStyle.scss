@@ -1,0 +1,61 @@
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(59, 130, 246, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    will-change: transform, width, height, opacity;
+    opacity: 0;
+    transition: width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease, border-radius 0.2s ease, opacity 0.3s ease;
+}
+
+.custom-cursor.visible {
+    opacity: 1;
+}
+
+.custom-cursor.sticky-mode {
+    background-color: rgba(59, 130, 246, 0.1);
+    border: 2px solid rgba(59, 130, 246, 0.8);
+    border-radius: 8px;
+    transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        background-color 0.3s ease,
+        border-radius 0.3s ease,
+        transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.custom-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background-color: rgba(59, 130, 246, 1);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100000;
+    will-change: transform, opacity;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.custom-cursor-dot.visible {
+    opacity: 1;
+}
+
+.custom-cursor-dot.hidden-on-hover {
+    opacity: 0;
+}
+
+@media (min-width: 640px) {
+
+    *,
+    *::before,
+    *::after {
+        cursor: none !important;
+    }
+}

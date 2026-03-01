@@ -12,7 +12,8 @@
                     <div
                         class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg">
                         <img [ngSrc]="myProfileImage" alt="Profile Image" width="300" height="300"
-                            class="w-full h-full object-cover" fetchpriority="high" decoding="async" priority />
+                            class="w-full h-full object-cover" fetchpriority="high" decoding="async"
+                            priority="high-quality" />
                     </div>
                     <div class="space-y-4">
                         <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white">
@@ -41,15 +42,29 @@
                     </p>
                 </section>
 
+                <!-- Text Generation Style -->
+                <!-- <section class="space-y-6">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center">
+                        About Me
+                    </h2>
+                    <p
+                        class="text-gray-700 dark:text-gray-300 text-justify max-w-2xl mx-auto leading-relaxed min-h-[180px] sm:min-h-[140px]">
+                        {{ text1 }}<strong class="text-gray-900 dark:text-white">{{ text2 }}</strong>{{ text3 }}
+
+                        <span *ngIf="showCursor"
+                            class="inline-block w-[3px] h-[1em] bg-blue-600 dark:bg-blue-400 animate-pulse align-middle -mt-1 rounded-full"></span>
+                    </p>
+                </section> -->
+
                 <section class="space-y-8 py-10">
                     <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center">
                         Tech Stack
                     </h2>
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 px-6">
                         <ng-container *ngFor="let stack of techStacks; trackBy: trackByCategory">
-                            <div *ngIf="stack.category === 'Frontend' || stack.category === 'Backend'" [ngClass]="{
-                      'lg:col-span-2': stack.category === 'Frontend'
-                    }" class="p-4 rounded-xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 text-center">
+                            <div *ngIf="stack.category === 'Frontend' || stack.category === 'Backend'"
+                                [ngClass]="{'lg:col-span-2': stack.category === 'Frontend'}"
+                                class="p-4 rounded-xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 text-center">
                                 <h3 class="text-md font-semibold text-gray-900 dark:text-white">
                                     {{ stack.category }}
                                 </h3>
@@ -94,40 +109,63 @@
                     </div>
                 </section>
 
-
-
                 <section class="space-y-6">
                     <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center">
                         Work Experience
                     </h2>
 
-                    <div class="grid gap-6">
+                    <div class="grid grid-cols-1 gap-6 px-6">
                         <div
-                            class="p-6 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out transform hover:shadow-2xl hover:scale-[1.02] hover:bg-white/70 dark:hover:bg-gray-700/70">
-                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                Frontend Developer
-                            </h3>
-                            <p class="text-gray-600 dark:text-gray-400 mt-2">
-                                The Tech Clouds • Aug 2025 - Present
-                            </p>
-                            <p class="text-gray-600 dark:text-gray-400 mt-2">
+                            class="p-6 rounded-xl bg-blue-50/50 dark:bg-blue-900/10 backdrop-blur-lg border border-gray-200 border-x-4 border-x-blue-500 dark:border-gray-700 dark:border-x-blue-400 transition-all duration-300 ease-in-out transform hover:shadow-2xl hover:scale-[1.02] hover:bg-blue-50/80 dark:hover:bg-blue-900/20 relative overflow-hidden">
+
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-blue-700 dark:text-blue-400">
+                                        Frontend Developer
+                                    </h3>
+                                    <p class="text-blue-800/70 dark:text-blue-200/70 font-medium mt-1">
+                                        TTC Consulting Services Pvt. Ltd. (Formerly The Tech Clouds)
+                                    </p>
+                                </div>
+
+                                <span
+                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 border border-blue-200 dark:border-blue-800/50 shadow-sm whitespace-nowrap">
+                                    <span class="relative flex h-2 w-2 mr-2">
+                                        <span
+                                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                                    </span>
+                                    Aug 2025 - Present
+                                </span>
+                            </div>
+
+                            <p class="text-gray-600 dark:text-gray-400 leading-relaxed mt-2">
                                 Leading frontend development with Angular and TypeScript. Architecting responsive UI
                                 components, optimizing performance, and ensuring accessibility compliance across web
                                 applications.
                             </p>
                         </div>
                     </div>
-
-                    <div class="grid gap-6">
+                    <div class="grid grid-cols-1 gap-6 px-6">
                         <div
                             class="p-6 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out transform hover:shadow-2xl hover:scale-[1.02] hover:bg-white/70 dark:hover:bg-gray-700/70">
-                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                Junior Frontend Developer
-                            </h3>
-                            <p class="text-gray-600 dark:text-gray-400 mt-2">
-                                The Tech Clouds • Nov 2023 - July 2025
-                            </p>
-                            <p class="text-gray-600 dark:text-gray-400 mt-2">
+
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                        Junior Frontend Developer
+                                    </h3>
+                                    <p class="text-blue-800/70 dark:text-blue-200/70 font-medium mt-1">
+                                        TTC Consulting Services Pvt. Ltd. (Formerly The Tech Clouds)
+                                    </p>
+                                </div>
+                                <span
+                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300 border border-purple-200 dark:border-purple-800/50 shadow-sm whitespace-nowrap">
+                                    Aug 2024 - July 2025
+                                </span>
+                            </div>
+
+                            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
                                 Assisted in developing responsive web applications, consistently meeting all project
                                 deadlines. Specialized in frontend development while also contributing to the UI/UX
                                 design process. Collaborated with senior developers on UI components to improve the user
@@ -135,6 +173,33 @@
                             </p>
                         </div>
                     </div>
+
+                    <div class="grid grid-cols-1 gap-6 px-6">
+                        <div
+                            class="p-6 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out transform hover:shadow-2xl hover:scale-[1.02] hover:bg-white/70 dark:hover:bg-gray-700/70">
+
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                        Junior Software Developer
+                                    </h3>
+                                    <p class="text-blue-800/70 dark:text-blue-200/70 font-medium mt-1">
+                                        TTC Consulting Services Pvt. Ltd. (Formerly The Tech Clouds)
+                                    </p>
+                                </div>
+                                <span
+                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-teal-100 text-teal-800 dark:bg-teal-900/40 dark:text-teal-300 border border-teal-200 dark:border-teal-800/50 shadow-sm whitespace-nowrap">
+                                    Nov 2023 - July 2024
+                                </span>
+                            </div>
+
+                            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                                Junior software developer building responsive web applications. Collaborated on modern
+                                UI/UX components to elevate the overall user experience.
+                            </p>
+                        </div>
+                    </div>
+
                 </section>
 
                 <section class="space-y-6">
